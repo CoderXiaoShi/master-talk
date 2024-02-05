@@ -1,5 +1,9 @@
 const puppeteer = require('puppeteer')
 
+/*
+  https://twitter.com/i/api/graphql/kfCWRG0roHHybC2Z9TwrOQ/UserTweets
+*/
+
 ;(async () => {
   const browser = await puppeteer.launch({ headless: true })
   const page = await browser.newPage()
