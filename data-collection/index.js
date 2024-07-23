@@ -1,10 +1,13 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs'
 import path from 'path'
-import './database.js'
+import sequelize from './database.js';
 import { Article } from './models/article.js'
 
 // Or import puppeteer from 'puppeteer-core';
+
+// 同步数据库
+await sequelize.sync();
 
 // Launch the browser and open a new blank page
 const browser = await puppeteer.launch({
@@ -28,13 +31,24 @@ page.on('response', async response => {
     let res = await response.json()
     console.log(res)
 
-    const [, , { entries }] = res.data.user.result.timeline_v2.timeline.instructions
+    const { instructions } = res.data.user.result.timeline_v2.timeline
+    for (const item of instructions) {
+      if (item.type === 'TimelineAddEntries') {
+        const { entries } = item;
 
-    for (const articleItem of entries) {
-      if (articleItem.content.entryType === 'TimelineTimelineItem') {
-        await Article.create({ jsonStr: JSON.stringify(articleItem) })
-      } else if (articleItem.content.entryType === 'TimelineTimelineCursor') {
-        console.log('cursor')
+        for (const articleItem of entries) {
+          if (articleItem.content.entryType === 'TimelineTimelineItem') {
+            // console.log('TimelineTimelineItem: ', articleItem);
+            await Article.create({
+              // jsonStr: articleItem.content.itemContent.tweet_results.result.legacy.full_text
+              jsonStr: JSON.stringify(articleItem.content),
+              content: articleItem.content.itemContent.tweet_results.result.legacy.full_text
+            })
+          } else if (articleItem.content.entryType === 'TimelineTimelineCursor') {
+            console.log('cursor')
+          }
+        }
+
       }
     }
 
