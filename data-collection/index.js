@@ -26,10 +26,11 @@ await page.goto('https://x.com/elonmusk');
 await page.setViewport({ width: 1680, height: 1080 });
 
 page.on('response', async response => {
-  // console.log(response.url());
+  // 用户必须登录, 否则会报错
   if (response.url().includes('/UserTweets')) {
     let res = await response.json()
     console.log(res)
+    // return
 
     const { instructions } = res.data.user.result.timeline_v2.timeline
     for (const item of instructions) {
