@@ -1,5 +1,5 @@
 <template>
-  <div class="news-item">
+  <article class="news-item">
     <!-- 
       头像:名称
           内容
@@ -23,7 +23,7 @@
             发布时间
         -->
       </div>
-  </div>
+  </article>
 </template>
 <script setup>
 import master from '@/assets/master.png'

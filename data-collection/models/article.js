@@ -7,6 +7,10 @@ const Article = sequelize.define('article', {
     type: DataTypes.STRING,
     allowNull: true
   },
+  rest_id: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   content: {
     type: DataTypes.STRING,
     allowNull: true
