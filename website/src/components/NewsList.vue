@@ -5,9 +5,7 @@
 </template>
 <script setup>
 import NewsItem from './NewsItem.vue'
-import data from '../data.json'
-
-console.log(data)
+import data from '@/assets/data.json'
 
 </script>
 

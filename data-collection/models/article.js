@@ -7,6 +7,14 @@ const Article = sequelize.define('article', {
     type: DataTypes.STRING,
     allowNull: true
   },
+  originId: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  author: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   rest_id: {
     type: DataTypes.STRING,
     allowNull: false

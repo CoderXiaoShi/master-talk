@@ -1,28 +1,33 @@
 <template>
-    <div class="head" 
-        :style="`background-image: url(${head})`"
-    >
-        {{ head }}
-        <!-- master -->
+    <div class="head" :style="`background-image: url(/${state.banner})`">
         <p>
-            <span>
-                Elon Musk
-            </span>
-            <img class="master-photo" :src="master" />
+            <span>{{ state.name }}</span>
+            <img class="master-photo" :src="state.photo" />
         </p>
     </div>
 </template>
 <script setup>
-import head from '@/assets/image.png'
-import master from '@/assets/master.png'
+import { reactive } from 'vue'
+
+import data from '@/assets/data.json'
+
+const author = data[0].author
+
+document.title = author.name
+const state = reactive({
+    banner: author.profile_banner_url,
+    photo: author.photo
+})
 
 </script>
 <style lang="less" scoped>
-.head{
+.head {
     height: 30vh;
+    background-size: cover;
     width: 100vw;
     position: relative;
-    p{
+
+    p {
         position: absolute;
         margin: 0;
         bottom: -2vh;
@@ -31,11 +36,13 @@ import master from '@/assets/master.png'
         align-items: center;
         color: #fff;
         margin-right: 15px;
-        span{
+
+        span {
             padding-right: 10px;
             font-size: 22px;
         }
-        .master-photo{
+
+        .master-photo {
             width: 10vh;
             border-radius: 5px;
             height: 10vh;

@@ -5,34 +5,63 @@
           内容
     -->
     <div class="left">
-      <img :src="master" />
+      <img :src="data.author.photo" />
     </div>
     <div class="right">
       <!-- 名称 -->
-      <div class="news-item__nickname">Elon Musk</div>
+      <div class="news-item__nickname">{{ data.author.name }}</div>
       <!-- 内容 -->
       <div class="news-item__content">
-        {{ data.content }}
-        <!-- They should actually teach this in biz school
-        <img :src="image01" /> -->
+        {{ contentStr }}
+        <img class="img" v-for="item of imgs" :src="item" />
       </div>
       <div class="news-item__tools">
-        2024-7-23 15:30
+        {{ created_at }}
       </div>
-      <!-- 
-          互动区域
-            发布时间
-        -->
     </div>
   </article>
 </template>
 <script setup>
 import master from '@/assets/master.png'
-import image01 from '@/assets/image01.png'
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
+import moment from 'moment'
 
-defineProps({
+const { data } = defineProps({
   data: Object
+})
+
+const imgs = computed(() => {
+  let list = []
+
+  try {
+    const imgs = data.jsonStr.itemContent.tweet_results.result.legacy.extended_entities.media
+    for (const imgItem of imgs) {
+      let fileName = imgItem.media_url_https.split('/').pop()
+      list.push(fileName);
+    }
+  } catch (error) {
+
+  }
+
+  return list
+})
+
+const contentStr = computed(() => {
+  let str = data.jsonStr.itemContent.tweet_results.result.legacy.full_text
+  let arr = str.split('https://t.co/');
+  if (arr.length) {
+    return arr[0]
+  }
+  return str;
+})
+
+const created_at = computed(() => {
+  try {
+    return moment(data.jsonStr.itemContent.tweet_results.result.legacy.created_at).format('YYYY-MM-DD HH:mm')
+  } catch (error) {
+    console.log(error)
+    return '--'
+  }
 })
 
 </script>
@@ -50,6 +79,7 @@ defineProps({
 
     .news-item__nickname {
       color: rgb(16, 49, 180);
+      font-size: 14px;
     }
 
     .news-item__content {
@@ -57,13 +87,15 @@ defineProps({
       padding: 5px 0;
 
       img {
-        width: 100%;
+        width: 90%;
+        border-radius: 10px;
+        margin: 10px;
       }
     }
 
     .news-item__tools {
       font-size: 12px;
-      color: #ccc;
+      color: #666;
     }
   }
 
