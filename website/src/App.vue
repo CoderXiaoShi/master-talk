@@ -15,7 +15,7 @@ import wx from '@/wx.jpg'
         网站内容均来自 X.com <br/>
         目的是为了接受最新的 前沿科技和人工智能相关的新闻 <br/>
         如果有问题请联系 <br/>
-        <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备20012878号</a>
+        <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备20012878号</a><br />
         <img :src="wx" alt="" width="300">
       </p>
     </div>
