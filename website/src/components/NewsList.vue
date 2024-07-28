@@ -1,6 +1,6 @@
 <template>
   <div class="news">
-    <NewsItem v-for="item of data" :data="item" />
+    <NewsItem v-for="item of data" :data="item" :key="item.rest_id" />
   </div>
 </template>
 <script setup>

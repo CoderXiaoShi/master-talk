@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer';
 import sequelize from './database.js';
 import { Article } from './models/article.js'
 import { downloadUrl } from './utils.js'
+import { execSync } from 'child_process';
 
 // 同步数据库
 await sequelize.sync();
@@ -12,10 +13,12 @@ const browser = await puppeteer.launch({
   args: ['--window-size=1920,1080'],
   userDataDir: './dist',
 });
-const page = await browser.newPage();
+
+const sleep = num => new Promise(resolve => setTimeout(resolve, num));
 
 const getNews = async (originId) => {
 
+  const page = await browser.newPage();
   await page.goto(`https://x.com/${originId}`);
   await page.setViewport({ width: 1680, height: 1080 });
 
@@ -89,10 +92,15 @@ const getNews = async (originId) => {
                   console.log(2, error)
                 }
                 const media = articleItem.content.itemContent.tweet_results?.result?.legacy?.entities?.media || []
-                if (media.length) {
-                  console.log(media[0].media_url_https);
-                  await downloadUrl(browser, media[0].media_url_https);
+                if (Array.isArray(media)) {
+                  for (const item of media) {
+                    await downloadUrl(browser, item.media_url_https);
+                  }
                 }
+                // if (media.length) {
+                //   console.log(media[0].media_url_https);
+                //   await downloadUrl(browser, media[0].media_url_https);
+                // }
               } else if (articleItem.content.entryType === 'TimelineTimelineCursor') {
                 console.log('cursor')
               }
@@ -108,17 +116,34 @@ const getNews = async (originId) => {
 }
 
   ; (async () => {
-    /*
-      let userIds = [
-        'elonmusk',
-        'openai'
-      ]
-      setInterval(() => {
-        userIds.forEach(id => getNews(id))
-      }, 1000 * 60 * 60)
-    */
+    /**/
+    let userIds = [
+      'elonmusk',
+      'openai'
+    ]
+    let run = async () => {
+      for (const userId of userIds) {
+        try {
+          await getNews(userId);
+        } catch (error) {
+          console.error('err', error);
+        }
+      }
+      // 导出数据
+      await sleep(1000 * 60 * 5); // 等待5分钟
+      execSync('node ./exportJson.js')
 
-    await getNews('elonmusk')
+      setTimeout(() => {
+        run();
+      }, 1000 * 60 * 60)
+    }
+
+    run();
+
+    // setInterval(async () => {
+    //   // userIds.forEach(id => getNews(id))
+    // }, 1000 * 60 * 60)s
+  
+    // await getNews('elonmusk')
     // await getNews('openai')
   })();
-

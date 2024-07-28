@@ -1,5 +1,9 @@
 {
   "files": [],
+  "compilerOptions": {
+    // ...其他配置项
+    "types": ["node"]
+  },
   "references": [
     {
       "path": "./tsconfig.app.json"

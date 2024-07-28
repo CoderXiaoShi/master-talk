@@ -29,3 +29,5 @@ list = list.map(item => {
 execSync('cp ./assets/* ../website/public/')
 
 fs.writeFileSync('../website/src/assets/data.json', JSON.stringify(list, null, 2), 'utf8')
+
+execSync('rm -rf ./assets/* ')

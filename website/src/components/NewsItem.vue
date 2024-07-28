@@ -13,7 +13,7 @@
       <!-- 内容 -->
       <div class="news-item__content">
         {{ contentStr }}
-        <img class="img" v-for="item of imgs" :src="item" />
+        <img class="img" v-for="item of imgs" :src="item" :key="item" />
       </div>
       <div class="news-item__tools">
         {{ created_at }}
@@ -22,7 +22,6 @@
   </article>
 </template>
 <script setup>
-import master from '@/assets/master.png'
 import { defineProps, computed } from 'vue'
 import moment from 'moment'
 

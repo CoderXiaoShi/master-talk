@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  font-family: 'Microsoft YaHei',  'San Francisco', Arial, sans-serif, San Francisco;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
