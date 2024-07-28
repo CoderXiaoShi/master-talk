@@ -112,34 +112,34 @@ const getNews = async (originId) => {
   return page
 }
 
-  ; (async () => {
-    /**/
-    let userIds = [
-      'elonmusk',
-      'openai'
-    ]
-    let pageMap = {}
-    let run = async () => {
-      for (const userId of userIds) {
-        try {
-          if (pageMap[userId]) {
-            pageMap[userId].reload();
-          } else {
-            pageMap[userId] = await getNews(userId);
-          }
-        } catch (error) {
-          console.error('err', error);
+; (async () => {
+  /**/
+  let userIds = [
+    'elonmusk',
+    'openai'
+  ]
+  let pageMap = {}
+  let run = async () => {
+    for (const userId of userIds) {
+      try {
+        if (pageMap[userId]) {
+          pageMap[userId].reload();
+        } else {
+          pageMap[userId] = await getNews(userId);
         }
+      } catch (error) {
+        console.error('err', error);
       }
-      // 导出数据
-      await sleep(1000 * 60 * 5); // 等待5分钟
-      execSync('node ./exportJson.js')
-
-      setTimeout(() => {
-        run();
-      }, 1000 * 60 * 30)
     }
+    // 导出数据
+    await sleep(1000 * 60 * 5); // 等待5分钟
+    execSync('node ./exportJson.js')
 
-    run();
+    setTimeout(() => {
+      run();
+    }, 1000 * 60 * 30)
+  }
 
-  })();
+  run();
+
+})();
