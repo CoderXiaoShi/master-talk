@@ -7,6 +7,7 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+database.sqlite
 data-collection/assets
 
 dist
