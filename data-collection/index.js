@@ -97,10 +97,6 @@ const getNews = async (originId) => {
                     await downloadUrl(browser, item.media_url_https);
                   }
                 }
-                // if (media.length) {
-                //   console.log(media[0].media_url_https);
-                //   await downloadUrl(browser, media[0].media_url_https);
-                // }
               } else if (articleItem.content.entryType === 'TimelineTimelineCursor') {
                 console.log('cursor')
               }
@@ -113,6 +109,7 @@ const getNews = async (originId) => {
       }
     }
   })
+  return page
 }
 
   ; (async () => {
@@ -121,10 +118,15 @@ const getNews = async (originId) => {
       'elonmusk',
       'openai'
     ]
+    let pageMap = {}
     let run = async () => {
       for (const userId of userIds) {
         try {
-          await getNews(userId);
+          if (pageMap[userId]) {
+            pageMap[userId].reload();
+          } else {
+            pageMap[userId] = await getNews(userId);
+          }
         } catch (error) {
           console.error('err', error);
         }
