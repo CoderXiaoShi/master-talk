@@ -1,6 +1,4 @@
 
-rm -rf ./assets/*
-
 cd ../website
 npm run build
 

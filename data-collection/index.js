@@ -142,10 +142,4 @@ const getNews = async (originId) => {
 
     run();
 
-    // setInterval(async () => {
-    //   // userIds.forEach(id => getNews(id))
-    // }, 1000 * 60 * 60)s
-  
-    // await getNews('elonmusk')
-    // await getNews('openai')
   })();
