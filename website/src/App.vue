@@ -23,9 +23,9 @@ import wx from '@/wx.jpg'
 
 <style lang="less" >
 
-@media (min-width: 850px) {
+@media (min-width: 750px) {
   .root{
-    width: 850px;
+    width: 750px;
     margin: 0 auto;
   }
   html {

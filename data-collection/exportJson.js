@@ -1,11 +1,8 @@
 import fs from 'fs'
-import path from 'path'
 
 import sequelize from './database.js';
 import { Article } from './models/article.js'
 import { execSync } from 'child_process';
-
-// Or import puppeteer from 'puppeteer-core';
 
 // 同步数据库
 await sequelize.sync();
@@ -25,16 +22,8 @@ list = list.map(item => {
   return n2D - n1D;
 })
 
-// execSync('rm -rf ../website/public/*')
 execSync('cp ./assets/* ../website/public/')
 
 fs.writeFileSync('../website/src/assets/data.json', JSON.stringify(list, null, 2), 'utf8')
 
 execSync('sh ./build.sh')
-
-// execSync('rm -rf ./assets/* ')
-// execSync(`git add .`)
-// execSync(`git commit -m "update`)
-// execSync('git push origin')
-// execSync('git push origin_gitee')
-

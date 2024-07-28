@@ -1,14 +1,7 @@
 
-# execSync('rm -rf ./assets/* ')
-# execSync(`npm run build`)
-# execSync(`git add .`)
-# execSync(`git commit -m "update`)
-# execSync('git push origin')
-# execSync('git push origin_gitee')
-
 rm -rf ./assets/*
 
-cd website
+cd ../website
 npm run build
 
 git add .
