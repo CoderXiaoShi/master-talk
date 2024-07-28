@@ -133,7 +133,11 @@ const getNews = async (originId) => {
     }
     // 导出数据
     await sleep(1000 * 60 * 5); // 等待5分钟
-    execSync('node ./exportJson.js')
+    try {
+      execSync('node ./exportJson.js')
+    } catch (error) {
+      console.error('err', error);
+    }
 
     setTimeout(() => {
       run();
