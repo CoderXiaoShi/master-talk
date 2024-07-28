@@ -24,7 +24,7 @@ const state = reactive({
 .head {
     height: 30vh;
     background-size: cover;
-    width: 100vw;
+    // width: 100vw;
     position: relative;
 
     p {

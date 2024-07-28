@@ -70,7 +70,7 @@ const created_at = computed(() => {
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid #eeeeee67;
-  padding: 2vw 5vw;
+  padding: 1rem 1.5rem;
 
   .right {
     flex: 1;
@@ -99,11 +99,11 @@ const created_at = computed(() => {
   }
 
   .left {
-    width: 12vw;
+    width: 4rem;
 
     img {
-      width: 12vw;
-      height: 12vw;
+      width: 4rem;
+      height: 4rem;
       border-radius: 5px;
     }
   }
