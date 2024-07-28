@@ -113,7 +113,7 @@ const getNews = async (originId) => {
 }
 
 ; (async () => {
-  /**/
+  // 用户Id
   let userIds = [
     'elonmusk',
     'openai'
