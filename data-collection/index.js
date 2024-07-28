@@ -135,7 +135,7 @@ const getNews = async (originId) => {
 
       setTimeout(() => {
         run();
-      }, 1000 * 60 * 60)
+      }, 1000 * 60 * 30)
     }
 
     run();

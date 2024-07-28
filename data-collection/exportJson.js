@@ -30,4 +30,11 @@ execSync('cp ./assets/* ../website/public/')
 
 fs.writeFileSync('../website/src/assets/data.json', JSON.stringify(list, null, 2), 'utf8')
 
-execSync('rm -rf ./assets/* ')
+execSync('sh ./build.sh')
+
+// execSync('rm -rf ./assets/* ')
+// execSync(`git add .`)
+// execSync(`git commit -m "update`)
+// execSync('git push origin')
+// execSync('git push origin_gitee')
+
