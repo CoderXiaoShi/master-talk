@@ -1,5 +1,5 @@
 <template>
-    <div class="head" :style="`background-image: url(master-talk/${state.banner})`">
+    <div class="head" :style="`background-image: url(${state.banner})`">
         <p>
             <span>{{ state.name }}</span>
             <img class="master-photo" :src="state.photo" />
