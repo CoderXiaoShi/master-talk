@@ -10,6 +10,7 @@ lerna-debug.log*
 data-collection/assets
 
 dist
+home
 # database.sqlite
 
 # Diagnostic reports (https://nodejs.org/api/report.html)

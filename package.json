@@ -1,0 +1,23 @@
+{
+  "name": "master-talk",
+  "version": "1.0.0",
+  "description": "像刷朋友圈一样, 看大佬发言. 从 x 上抓去大佬说的内容",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoderXiaoShi/master-talk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CoderXiaoShi/master-talk/issues"
+  },
+  "homepage": "https://github.com/CoderXiaoShi/master-talk#readme",
+  "devDependencies": {
+    "pm2": "^5.4.2"
+  }
+}
