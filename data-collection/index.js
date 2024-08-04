@@ -133,6 +133,7 @@ const getNews = async (originId) => {
     }
     // 导出数据
     await sleep(1000 * 60 * 5); // 等待5分钟
+    console.log('--------- 5分钟后开始导出数据 ---------')
     try {
       execSync('node ./exportJson.js')
     } catch (error) {

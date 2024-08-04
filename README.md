@@ -4,7 +4,7 @@
 
 像刷朋友圈一样, 看大佬发言. 从 x 上抓去大佬说的内容
 
-- demo2: https://coderxiaoshi.github.io/master-talk/
+- demo: https://coderxiaoshi.github.io/master-talk/
 
 ![Demo](./demo.png)
 

@@ -7,5 +7,5 @@ git commit -m "update"
 git push 
 
 
-# git push origin
-git push origin_gitee
+git push origin
+# git push origin_gitee
