@@ -9,6 +9,7 @@ await sequelize.sync();
 
 const browser = await puppeteer.launch({
   headless: false,
+  // headless: true,
   slowMo: 250,
   args: ['--window-size=1920,1080'],
   userDataDir: './dist',
