@@ -11,6 +11,7 @@ database.sqlite
 data-collection/assets
 
 dist
+browser-data
 # database.sqlite
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
